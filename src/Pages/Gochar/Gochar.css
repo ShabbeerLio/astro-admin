@@ -1,0 +1,54 @@
+.Gochar {
+  padding: 1rem;
+}
+
+.Gochar-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Gochar-box {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.Gochar-card {
+  border-radius: 8px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 1rem;
+}
+
+.Gochar-card-head {
+  border-bottom: 1px solid #c1c1c1;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.Gochar-card-head h5{
+  margin: 0;
+}
+
+.gochar-card-box p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 300;
+}
+.gochar-card-box p span {
+  margin: 0;
+  font-weight: 500;
+}
+
+.gochar-card-button{
+    display: flex;
+    align-items: center;
+}
+.gochar-card-button p{
+    margin: 0;
+    margin-left: 10px;
+    cursor: pointer;
+}

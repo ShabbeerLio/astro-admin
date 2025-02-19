@@ -1,0 +1,63 @@
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.modal-body {
+  z-index: 1051;
+  background-color: white;
+  border-radius: 8px;
+  padding: 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+}
+.modal-body form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+.modal-body form input {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background-color: #fff7f1;
+  width: 100%;
+}
+.modal-footer {
+  grid-column-end: span 2;
+  justify-content: space-around;
+}
+.modal-footer button {
+  width: 49%;
+  padding: 10px;
+  border-radius: 8px;
+  color: white;
+}
+
+.frm-input-box {
+    width: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+}
+.frm-input-box select{
+    padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background-color: #fff7f1;
+  width: 100%;
+  font-size: 14px;
+}
+.frm-input-box label{
+  display: flex;
+  margin-bottom: 5px;
+}
+.frm-input-box label input{
+  margin-left: 10px;
+}

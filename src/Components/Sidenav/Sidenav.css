@@ -1,0 +1,71 @@
+.Sidenav {
+  width: 15%;
+  background-color: #fff7f1;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  z-index: 2;
+}
+
+.Sidenav-icon img {
+  width: 35%;
+  object-fit: cover;
+  padding: 1rem;
+}
+
+.topbar {
+  background-color: #fff7f1;
+  position: relative;
+  width: 100%;
+  height: 60px;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.dropdown p {
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+}
+
+.Sidenav-box {
+  display: flex;
+}
+
+.Sidenav-box ul {
+  padding: 1rem;
+  width: 100%;
+}
+
+.Sidenav-box ul li {
+  display: flex;
+}
+
+.Sidenav-box ul li a {
+  display: flex;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  background-color: #ffeddf;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+.Sidenav-logout {
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  width: 100%;
+}
+
+.Sidenav-logout a {
+  text-decoration: none;
+  color: black;
+  background-color: orange;
+  padding: 10px 30px;
+  border-radius: 8px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+}

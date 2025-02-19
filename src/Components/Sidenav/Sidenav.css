@@ -11,6 +11,16 @@
   object-fit: cover;
   padding: 1rem;
 }
+.Sidenav-icon a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+}
+.Sidenav-icon a p{
+  margin: 0;
+}
 
 .topbar {
   background-color: #fff7f1;

@@ -8,7 +8,6 @@ const ContextState = (props) => {
 
   const [notes, setNotes] = useState(notesData);
 
-  // ................................. gochar.......................................//
   // Get all gochar
   const getGochar = async () => {
     const response = await fetch(`${Host}/api/admindetail/all`, {
@@ -90,6 +89,31 @@ const ContextState = (props) => {
     }
   };
 
+ 
+
+    // Edit API key
+    const editApiKey = async (id, updatedKey) => {
+      try {
+        const response = await fetch(`${Host}/api/admindetail/apikey/edit/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": localStorage.getItem("token"),
+          },
+          body: JSON.stringify({ apiKey: updatedKey }),
+        });
+  
+        if (!response.ok) throw new Error("Failed to update API key");
+        const data = await response.json();
+  
+        setNotes((prevKeys) =>
+          prevKeys.map((key) => (key._id === id ? { ...key, apiKey: updatedKey } : key))
+        );
+      } catch (error) {
+        console.error("Error updating API key:", error);
+      }
+    };
+
   return (
     <NoteContext.Provider
       value={{
@@ -98,6 +122,7 @@ const ContextState = (props) => {
         addGochar,
         editGochar,
         deleteGochar,
+        editApiKey
       }}
     >
       {props.children}

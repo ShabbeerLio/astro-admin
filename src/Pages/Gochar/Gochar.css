@@ -1,5 +1,7 @@
 .Gochar {
   padding: 1rem;
+  overflow-y: auto;
+  height: 92%;
 }
 
 .Gochar-button {
@@ -29,7 +31,7 @@
   margin-bottom: 10px;
 }
 
-.Gochar-card-head h5{
+.Gochar-card-head h5 {
   margin: 0;
 }
 
@@ -43,12 +45,12 @@
   font-weight: 500;
 }
 
-.gochar-card-button{
-    display: flex;
-    align-items: center;
+.gochar-card-button {
+  display: flex;
+  align-items: center;
 }
-.gochar-card-button p{
-    margin: 0;
-    margin-left: 10px;
-    cursor: pointer;
+.gochar-card-button p {
+  margin: 0;
+  margin-left: 10px;
+  cursor: pointer;
 }

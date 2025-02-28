@@ -1,0 +1,16 @@
+.apikey-box{
+    display: flex;
+    align-items: center;
+    
+}
+.apikey-box p{
+   margin: 0;
+}
+.apikey-box input{
+   display: flex;
+   align-items: center;
+   width: 40%;
+}
+.apikey-box button{
+   margin-left: 1rem;
+}

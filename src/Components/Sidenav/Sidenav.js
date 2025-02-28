@@ -23,11 +23,14 @@ const Sidenav = () => {
                         <Link to={"/"}>Home</Link>
                     </li>
                     <li>
-                        <Link to={"/"}>Gochar</Link>
+                        <Link to={"/gochar"}>Gochar</Link>
                     </li>
-                    {/* <li>
-                        <Link to={"/"}>User</Link>
-                    </li> */}
+                    <li>
+                        <Link to={"/users"}>Users</Link>
+                    </li>
+                    <li>
+                        <Link to={"/apiupdate"}>API KEY</Link>
+                    </li>
                 </ul>
             </div>
             <div className="Sidenav-logout">

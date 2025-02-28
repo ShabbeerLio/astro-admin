@@ -6,6 +6,7 @@ import Gochar from "./Pages/Gochar/Gochar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./Pages/Login/Login";
 import Users from "./Pages/Users/Users";
+import ApiChange from "./Pages/Api/ApiChange";
 
 function App() {
   return (
@@ -19,8 +20,10 @@ function App() {
             {/* <Alert alert={alert} /> */}
             <Routes>
               <Route path="/" exact element={<Gochar />} />
+              <Route path="/gochar" exact element={<Gochar />} />
               <Route path="/login" exact element={<Login />} />
-              {/* <Route path="/user" exact element={<Users />} /> */}
+              <Route path="/users" exact element={<Users />} />
+              <Route path="/apiupdate" exact element={<ApiChange />} />
             </Routes>
           </div>
         </div>

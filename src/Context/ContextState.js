@@ -30,14 +30,14 @@ const ContextState = (props) => {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to add client");
+        throw new Error("Failed to add Gochar");
       }
 
       const client = await response.json();
       setNotes((prevNotes) => [...prevNotes, client]);
-      console.log("Client added successfully", "success");
+      console.log("Gochar added successfully", "success");
     } catch (error) {
-      console.error("Error adding client:", error.message);
+      console.error("Error adding Gochar:", error.message);
       // showAlert("Failed to add client", "error");
     }
   };
@@ -89,30 +89,104 @@ const ContextState = (props) => {
     }
   };
 
- 
+  const addLifeAspect = async (Life_aspect) => {
+    try {
+      const response = await fetch(`${Host}/api/admindetail/lifeaspect/add`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("token"),
+        },
+        body: JSON.stringify({ life_aspect: [Life_aspect] }),
+      });
 
-    // Edit API key
-    const editApiKey = async (id, updatedKey) => {
-      try {
-        const response = await fetch(`${Host}/api/admindetail/apikey/edit/${id}`, {
+      if (!response.ok) {
+        throw new Error("Failed to add life_aspect");
+      }
+
+      const client = await response.json();
+      setNotes((prevNotes) => [...prevNotes, client]);
+      console.log("life_aspect added successfully", "success");
+    } catch (error) {
+      console.error("Error adding life_aspect:", error.message);
+      // showAlert("Failed to add client", "error");
+    }
+  };
+
+  // Edit Gochar entry
+  const editLifeAspect = async (id, updatedLifeAspect) => {
+    try {
+      const response = await fetch(`${Host}/api/admindetail/lifeaspect/edit/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("token"),
+        },
+        body: JSON.stringify(updatedLifeAspect),
+      });
+
+      if (!response.ok) throw new Error("Failed to update LifeAspect");
+      const updatedClient = await response.json();
+      setNotes((prevNotes) =>
+        prevNotes.map((note) => (note._id === id ? updatedClient.client : note))
+      );
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
+  // Delete Gochar entry
+  const deleteLifeAspect = async (id) => {
+    try {
+      const response = await fetch(`${Host}/api/admindetail/lifeaspect/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("token"),
+        },
+      });
+
+      if (!response.ok) {
+        const json = await response.json();
+        throw new Error(json.error || "Failed to delete LifeAspect ");
+      }
+
+      // const deletedClient = await response.json();
+      setNotes((prevNotes) => prevNotes.filter((note) => note._id !== id));
+      console.log("LifeAspect deleted successfully", "success");
+    } catch (error) {
+      console.error("Error deleting LifeAspect :", error.message);
+      // showAlert("Failed to delete client", "error");
+    }
+  };
+
+  // Edit API key
+  const editApiKey = async (id, updatedKey) => {
+    try {
+      const response = await fetch(
+        `${Host}/api/admindetail/apikey/edit/${id}`,
+        {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
             "auth-token": localStorage.getItem("token"),
           },
           body: JSON.stringify({ apiKey: updatedKey }),
-        });
-  
-        if (!response.ok) throw new Error("Failed to update API key");
-        const data = await response.json();
-  
-        setNotes((prevKeys) =>
-          prevKeys.map((key) => (key._id === id ? { ...key, apiKey: updatedKey } : key))
-        );
-      } catch (error) {
-        console.error("Error updating API key:", error);
-      }
-    };
+        }
+      );
+
+      if (!response.ok) throw new Error("Failed to update API key");
+      const data = await response.json();
+
+      setNotes((prevKeys) =>
+        prevKeys.map((key) =>
+          key._id === id ? { ...key, apiKey: updatedKey } : key
+        )
+      );
+    } catch (error) {
+      console.error("Error updating API key:", error);
+    }
+  };
 
   return (
     <NoteContext.Provider
@@ -122,7 +196,10 @@ const ContextState = (props) => {
         addGochar,
         editGochar,
         deleteGochar,
-        editApiKey
+        addLifeAspect,
+        editLifeAspect,
+        deleteLifeAspect,
+        editApiKey,
       }}
     >
       {props.children}

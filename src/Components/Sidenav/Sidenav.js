@@ -26,6 +26,9 @@ const Sidenav = () => {
                         <Link to={"/gochar"}>Gochar</Link>
                     </li>
                     <li>
+                        <Link to={"/lifeaspect"}>Life Aspect</Link>
+                    </li>
+                    <li>
                         <Link to={"/users"}>Users</Link>
                     </li>
                     <li>

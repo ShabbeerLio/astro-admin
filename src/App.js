@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./Pages/Login/Login";
 import Users from "./Pages/Users/Users";
 import ApiChange from "./Pages/Api/ApiChange";
+import LifeAspect from "./Pages/LifeAspect/LifeAspect";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Routes>
               <Route path="/" exact element={<Gochar />} />
               <Route path="/gochar" exact element={<Gochar />} />
+              <Route path="/lifeaspect" exact element={<LifeAspect />} />
               <Route path="/login" exact element={<Login />} />
               <Route path="/users" exact element={<Users />} />
               <Route path="/apiupdate" exact element={<ApiChange />} />

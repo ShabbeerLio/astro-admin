@@ -40,24 +40,38 @@
 }
 
 .frm-input-box {
-    width: 100%;
+  width: 100%;
   display: flex;
   align-items: start;
   justify-content: center;
   flex-direction: column;
 }
-.frm-input-box select{
-    padding: 10px;
+.frm-input-box select {
+  padding: 10px;
   border-radius: 8px;
   border: none;
   background-color: #fff7f1;
   width: 100%;
   font-size: 14px;
 }
-.frm-input-box label{
+.frm-input-box label {
   display: flex;
   margin-bottom: 5px;
 }
-.frm-input-box label input{
+.frm-input-box label input {
   margin-left: 10px;
 }
+
+.add-textarea {
+  grid-template-columns: repeat(1, 1fr) !important;
+}
+.add-textarea textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background-color: #fff7f1;
+  width: 100%;
+  font-size: 14px;
+}
+

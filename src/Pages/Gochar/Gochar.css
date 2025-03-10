@@ -54,3 +54,33 @@
   margin-left: 10px;
   cursor: pointer;
 }
+
+.planet-filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.planet-filter p {
+  margin: 0;
+}
+.planet-filter select {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background-color: #fff7f1;
+  width: 100%;
+  font-size: 14px;
+}
+
+.pagination{
+display: flex;
+align-items: center;
+justify-content: center;
+margin-top: 2rem;
+gap: 1rem;
+}
+.pagination button{
+padding: 7px 10px;
+cursor: pointer;
+}

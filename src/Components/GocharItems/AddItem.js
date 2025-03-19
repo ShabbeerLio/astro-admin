@@ -21,10 +21,10 @@ const AddItem = ({ closeModal, gochar }) => {
   ];
   const nakshatras = [
     "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra",
-            "Punarvasu", "Pushya", "Ashlesha", "Magha", "PurvaPhalguni", "UttaraPhalguni",
-            "Hasta", "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
-            "PurvaShadha", "UttaraShadha", "Sravana", "Dhanista", "Shatabhisha",
-            "PurvaBhadra", "UttaraBhadra", "Revati", "Abhijit"
+    "Punarvasu", "Pushya", "Ashlesha", "Magha", "PurvaPhalguni", "UttaraPhalguni",
+    "Hasta", "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
+    "PurvaShadha", "UttaraShadha", "Sravana", "Dhanista", "Shatabhisha",
+    "PurvaBhadra", "UttaraBhadra", "Revati", "Abhijit"
   ];
 
   useEffect(() => {

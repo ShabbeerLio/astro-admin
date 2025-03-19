@@ -8,6 +8,7 @@ import Login from "./Pages/Login/Login";
 import Users from "./Pages/Users/Users";
 import ApiChange from "./Pages/Api/ApiChange";
 import LifeAspect from "./Pages/LifeAspect/LifeAspect";
+import Subscription from "./Pages/Subscription/Subscription";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
               <Route path="/lifeaspect" exact element={<LifeAspect />} />
               <Route path="/login" exact element={<Login />} />
               <Route path="/users" exact element={<Users />} />
+              <Route path="/subscription" exact element={<Subscription />} />
               <Route path="/apiupdate" exact element={<ApiChange />} />
             </Routes>
           </div>

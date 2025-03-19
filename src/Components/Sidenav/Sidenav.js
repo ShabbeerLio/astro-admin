@@ -32,6 +32,9 @@ const Sidenav = () => {
                         <Link to={"/users"}>Users</Link>
                     </li>
                     <li>
+                        <Link to={"/subscription"}>Subscription</Link>
+                    </li>
+                    <li>
                         <Link to={"/apiupdate"}>API KEY</Link>
                     </li>
                 </ul>

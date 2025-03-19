@@ -4,6 +4,7 @@ import "./Users.css"
 
 const Users = () => {
     const [users, setUsers] = useState([]);
+    console.log(users, "users")
 
     useEffect(() => {
         const fetchUsers = async () => {

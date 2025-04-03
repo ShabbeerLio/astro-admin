@@ -23,8 +23,8 @@ const AddItem = ({ closeModal, gochar }) => {
     "Ashvini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra",
     "Punarvasu", "Pushya", "Ashlesha", "Magha", "PurvaPhalguni", "UttaraPhalguni",
     "Hasta", "Chitra", "Svati", "Vishakha", "Anuradha", "Jyeshtha", "Mula",
-    "PurvaShadha", "UttaraShadha", "Sravana", "Dhanista", "Shatabhisha",
-    "PurvaBhadra", "UttaraBhadra", "Revati", "Abhijit"
+    "PurvaShadha", "UttraShadha", "Sravana", "Dhanista", "Shatabhisha",
+    "PurvaBhadra", "UttaraBhadra", "Revati"
   ];
 
   useEffect(() => {

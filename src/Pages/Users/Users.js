@@ -4,7 +4,16 @@ import "./Users.css"
 
 const Users = () => {
     const [users, setUsers] = useState([]);
-    console.log(users, "users")
+    const handleKundaliClick = (userId) => {
+        const token = localStorage.getItem("token")
+
+        const queryParams = new URLSearchParams({
+            token: token,
+            userIds: userId
+        });
+
+        window.location.href = `http://127.0.0.1:5502/kundali.html?${queryParams.toString()}`;
+    };
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -65,7 +74,11 @@ const Users = () => {
                                         Vowel: <span>{j.vowel}</span>
                                     </p>
                                     <div className="users-button">
-                                        <p>Kundali</p>
+                                        <p
+                                            onClick={() => handleKundaliClick(j._id)}
+                                        >
+                                            Kundali
+                                        </p>
                                     </div>
                                 </div>
                             </div>

@@ -12,7 +12,7 @@ const Users = () => {
             userIds: userId
         });
 
-        window.location.href = `http://127.0.0.1:5502/kundali.html?${queryParams.toString()}`;
+        window.location.href = `https://www.astronivesh.com/kundali.html?${queryParams.toString()}`;
     };
 
     useEffect(() => {

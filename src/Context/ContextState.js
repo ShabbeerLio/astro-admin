@@ -9,7 +9,7 @@ const ContextState = (props) => {
   const [notes, setNotes] = useState(notesData);
 
   // Get all gochar
-  const getGochar = async () => {
+  const getDetails = async () => {
     const response = await fetch(`${Host}/api/admindetail/all`, {
       method: "GET",
     });
@@ -188,11 +188,34 @@ const ContextState = (props) => {
     }
   };
 
+  // Appointment Plan
+  // Edit Plan
+  const editPlan = async (id, updatedplan) => {
+    try {
+      const response = await fetch(`${Host}/api/appointmentplan/edit/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("token"),
+        },
+        body: JSON.stringify(updatedplan),
+      });
+
+      if (!response.ok) throw new Error("Failed to update Plan");
+      const updatedClient = await response.json();
+      setNotes((prevNotes) =>
+        prevNotes.map((note) => (note._id === id ? updatedClient.client : note))
+      );
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
   return (
     <NoteContext.Provider
       value={{
         notes,
-        getGochar,
+        getDetails,
         addGochar,
         editGochar,
         deleteGochar,
@@ -200,6 +223,7 @@ const ContextState = (props) => {
         editLifeAspect,
         deleteLifeAspect,
         editApiKey,
+        editPlan
       }}
     >
       {props.children}

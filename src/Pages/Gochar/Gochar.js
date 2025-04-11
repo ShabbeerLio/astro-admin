@@ -6,7 +6,7 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import NoteContext from "../../Context/NoteContext";
 
 const Gochar = () => {
-  const { notes, getGochar, deleteGochar } = useContext(NoteContext);
+  const { notes, getDetails, deleteGochar } = useContext(NoteContext);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedGochar, setSelectedGochar] = useState(null);
   const [filterPlanet, setFilterPlanet] = useState("All");
@@ -17,9 +17,9 @@ const Gochar = () => {
     if (!localStorage.getItem("token")) {
       navigate("/login");
     } else {
-      getGochar();
+      getDetails();
     }
-  }, [navigate, getGochar]);
+  }, [navigate, getDetails]);
 
   const openModal = (gochar = null) => {
     setSelectedGochar(gochar);

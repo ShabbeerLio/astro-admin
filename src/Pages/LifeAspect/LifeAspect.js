@@ -5,7 +5,7 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import NoteContext from "../../Context/NoteContext";
 
 const LifeAspect = () => {
-  const { notes, getGochar, deleteLifeAspect } = useContext(NoteContext);
+  const { notes, getDetails, deleteLifeAspect } = useContext(NoteContext);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedGochar, setSelectedGochar] = useState(null);
   const [selectedPlanet, setSelectedPlanet] = useState(""); // Planet filter
@@ -17,9 +17,9 @@ const LifeAspect = () => {
     if (!localStorage.getItem("token")) {
       navigate("/login");
     } else {
-      getGochar();
+      getDetails();
     }
-  }, [navigate, getGochar]);
+  }, [navigate, getDetails]);
 
   const openModal = (life_aspect = null) => {
     setSelectedGochar(life_aspect);

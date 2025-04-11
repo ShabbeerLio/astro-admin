@@ -24,7 +24,7 @@
 }
 
 .Gochar-card-head {
-  border-bottom: 1px solid #c1c1c1;
+  border-bottom: 1px solid #f9852d;
   display: flex;
   align-content: center;
   justify-content: space-between;
@@ -68,7 +68,7 @@
   padding: 10px;
   border-radius: 8px;
   border: none;
-  background-color: #fff7f1;
+  background-color: #ffe9dd;
   width: 100%;
   font-size: 14px;
 }

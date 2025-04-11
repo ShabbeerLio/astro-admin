@@ -1,6 +1,6 @@
 .Sidenav {
   width: 15%;
-  background-color: #fff7f1;
+  background-color: #ffe9dd;
   position: relative;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   z-index: 2;
@@ -23,7 +23,7 @@
 }
 
 .topbar {
-  background-color: #fff7f1;
+  background-color: #ffe9dd;
   position: relative;
   width: 100%;
   height: 60px;
@@ -54,7 +54,7 @@
   padding: 10px;
   text-decoration: none;
   color: black;
-  background-color: #ffeddf;
+  background-color: #ffddca;
   width: 100%;
   margin-bottom: 10px;
   border-radius: 8px;
@@ -70,7 +70,7 @@
 .Sidenav-logout a {
   text-decoration: none;
   color: black;
-  background-color: orange;
+  background-color: #f9852d;
   padding: 10px 30px;
   border-radius: 8px;
   color: white;

@@ -6,7 +6,7 @@ import { FaCheck, FaTimes } from "react-icons/fa";
 import "./ApiChange.css"
 
 const ApiChange = () => {
-    const { notes, getGochar, editApiKey } = useContext(NoteContext);
+    const { notes, getDetails, editApiKey } = useContext(NoteContext);
     const [editingId, setEditingId] = useState(null);
     const [updatedApiKey, setUpdatedApiKey] = useState("");
 
@@ -16,9 +16,9 @@ const ApiChange = () => {
         if (!localStorage.getItem("token")) {
             navigate("/login");
         } else {
-            getGochar();
+            getDetails();
         }
-    }, [navigate, getGochar]);
+    }, [navigate, getDetails]);
     const handleEditClick = (key) => {
         setEditingId(key._id);
         setUpdatedApiKey(key.apiKey);

@@ -136,7 +136,7 @@ const Appointments = () => {
                                 {filteredAppointments.map((k, idx) => (
                                     <tr key={k._id}>
                                         <td>{idx + 1}</td>
-                                        <td>{new Date(k.date).toISOString().split("T")[0]}</td>
+                                        <td>{k.date}</td>
                                         <td>{k.name}</td>
                                         <td>{k.email}</td>
                                         <td>₹ {k.amount}</td>

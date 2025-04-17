@@ -211,6 +211,79 @@ const ContextState = (props) => {
     }
   };
 
+  // Remedy
+  // Add Remedy Entry
+  const addRemedy = async (Remedy) => {
+    try {
+      const response = await fetch(`${Host}/api/remedy/add`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("token"),
+        },
+        body: JSON.stringify({ remedy: [Remedy] }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to add Remedy");
+      }
+
+      const client = await response.json();
+      setNotes((prevNotes) => [...prevNotes, client]);
+      console.log("Remedy added successfully", "success");
+    } catch (error) {
+      console.error("Error adding Remedy:", error.message);
+      // showAlert("Failed to add client", "error");
+    }
+  };
+
+    // Edit remedy entry
+    const editRemedy = async (id, updatedRemedy) => {
+      try {
+        const response = await fetch(`${Host}/api/remedy/edit/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": localStorage.getItem("token"),
+          },
+          body: JSON.stringify(updatedRemedy),
+        });
+  
+        if (!response.ok) throw new Error("Failed to update remedy");
+        const updatedClient = await response.json();
+        setNotes((prevNotes) =>
+          prevNotes.map((note) => (note._id === id ? updatedClient.client : note))
+        );
+      } catch (error) {
+        console.log("error");
+      }
+    };
+  
+    // Delete remedy entry
+    const deleteRemedy = async (id) => {
+      try {
+        const response = await fetch(`${Host}/api/remedy/delete/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": localStorage.getItem("token"),
+          },
+        });
+  
+        if (!response.ok) {
+          const json = await response.json();
+          throw new Error(json.error || "Failed to delete remedy ");
+        }
+  
+        // const deletedClient = await response.json();
+        setNotes((prevNotes) => prevNotes.filter((note) => note._id !== id));
+        console.log("remedy deleted successfully", "success");
+      } catch (error) {
+        console.error("Error deleting remedy :", error.message);
+        // showAlert("Failed to delete client", "error");
+      }
+    };
+
   return (
     <NoteContext.Provider
       value={{
@@ -223,7 +296,10 @@ const ContextState = (props) => {
         editLifeAspect,
         deleteLifeAspect,
         editApiKey,
-        editPlan
+        editPlan,
+        addRemedy,
+        editRemedy,
+        deleteRemedy
       }}
     >
       {props.children}

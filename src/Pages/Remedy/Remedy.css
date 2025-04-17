@@ -1,0 +1,30 @@
+.remedies-head{
+    margin-top: 2rem;
+}
+
+.custom-dropdown {
+    position: relative;
+    width: 100%;
+}
+
+.search-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    color: black;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1052;
+}
+
+.search-item {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.search-item:hover {
+    background-color: #eee;
+}

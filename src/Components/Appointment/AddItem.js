@@ -7,6 +7,7 @@ const AddItem = ({ closeModal, planData }) => {
     const [formData, setFormData] = useState({
         plan: "",
         price: "",
+        slprice: "",
         duration: "",
     });
 
@@ -17,6 +18,7 @@ const AddItem = ({ closeModal, planData }) => {
             setFormData({
                 plan: "",
                 price: "",
+                slprice: "",
                 duration: "",
             });
         }
@@ -62,6 +64,14 @@ const AddItem = ({ closeModal, planData }) => {
                         <label htmlFor="rashi">Price:</label>
                         <input type="text" name="price"
                             value={formData.price}
+                            onChange={handleChange}
+                            required />
+
+                    </div>
+                    <div className="frm-input-box">
+                        <label htmlFor="slprice">Sales Price:</label>
+                        <input type="text" name="slprice"
+                            value={formData.slprice}
                             onChange={handleChange}
                             required />
 

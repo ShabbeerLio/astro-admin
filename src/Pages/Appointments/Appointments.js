@@ -77,7 +77,10 @@ const Appointments = () => {
                                     </div>
                                     <div className="gochar-card-box">
                                         <p>
-                                            Price: <span>₹ {k.price}</span>
+                                            Sales Price: <span>₹ {k.price}</span>
+                                        </p>
+                                        <p>
+                                            Cost Price: <span>₹ {k.slprice}</span>
                                         </p>
                                         <p>
                                             Duration: <span>{k.duration} min</span>

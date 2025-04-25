@@ -14,7 +14,7 @@ const ContextState = (props) => {
       method: "GET",
     });
     const json = await response.json();
-    console.log(json, "json");
+    // console.log(json, "json");
     setNotes(json);
   };
 
@@ -35,14 +35,7 @@ const ContextState = (props) => {
       }
 
       const client = await response.json();
-      console.log(client, "cdata");
-       // Extract the newly added Gochar
-    const gocharArray = client.adminDetail.gochar;
-    const newlyAddedGochar = gocharArray[gocharArray.length - 1]; // Assuming it is appended at last
-
-    setNotes((prevNotes) => [...prevNotes, newlyAddedGochar]);
-
-      // setNotes((prevNotes) => [...prevNotes, client]);
+      setNotes((prevNotes) => [...prevNotes, client]);
       console.log("Gochar added successfully", "success");
       await getDetails();
     } catch (error) {

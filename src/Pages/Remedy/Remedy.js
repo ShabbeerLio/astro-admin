@@ -20,7 +20,7 @@ const Remedy = () => {
     } else {
       getDetails();
     }
-  }, [navigate, getDetails]);
+  }, [navigate]);
 
   useEffect(() => {
     const fetchUsers = async () => {

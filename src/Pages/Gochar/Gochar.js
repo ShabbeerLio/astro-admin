@@ -19,7 +19,7 @@ const Gochar = () => {
     } else {
       getDetails();
     }
-  }, [navigate, getDetails]);
+  }, [navigate]);
 
   const openModal = (gochar = null) => {
     setSelectedGochar(gochar);

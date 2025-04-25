@@ -14,6 +14,7 @@ const ContextState = (props) => {
       method: "GET",
     });
     const json = await response.json();
+    console.log(json, "json");
     setNotes(json);
   };
 
@@ -34,8 +35,16 @@ const ContextState = (props) => {
       }
 
       const client = await response.json();
-      setNotes((prevNotes) => [...prevNotes, client]);
+      console.log(client, "cdata");
+       // Extract the newly added Gochar
+    const gocharArray = client.adminDetail.gochar;
+    const newlyAddedGochar = gocharArray[gocharArray.length - 1]; // Assuming it is appended at last
+
+    setNotes((prevNotes) => [...prevNotes, newlyAddedGochar]);
+
+      // setNotes((prevNotes) => [...prevNotes, client]);
       console.log("Gochar added successfully", "success");
+      await getDetails();
     } catch (error) {
       console.error("Error adding Gochar:", error.message);
       // showAlert("Failed to add client", "error");
@@ -59,6 +68,7 @@ const ContextState = (props) => {
       setNotes((prevNotes) =>
         prevNotes.map((note) => (note._id === id ? updatedClient.client : note))
       );
+      await getDetails();
     } catch (error) {
       console.log("error");
     }
@@ -83,6 +93,7 @@ const ContextState = (props) => {
       const deletedClient = await response.json();
       setNotes((prevNotes) => prevNotes.filter((note) => note._id !== id));
       console.log("gochar deleted successfully", "success");
+      await getDetails();
     } catch (error) {
       console.error("Error deleting gochar :", error.message);
       // showAlert("Failed to delete client", "error");
@@ -107,6 +118,7 @@ const ContextState = (props) => {
       const client = await response.json();
       setNotes((prevNotes) => [...prevNotes, client]);
       console.log("life_aspect added successfully", "success");
+      await getDetails();
     } catch (error) {
       console.error("Error adding life_aspect:", error.message);
       // showAlert("Failed to add client", "error");
@@ -116,20 +128,24 @@ const ContextState = (props) => {
   // Edit Gochar entry
   const editLifeAspect = async (id, updatedLifeAspect) => {
     try {
-      const response = await fetch(`${Host}/api/admindetail/lifeaspect/edit/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("token"),
-        },
-        body: JSON.stringify(updatedLifeAspect),
-      });
+      const response = await fetch(
+        `${Host}/api/admindetail/lifeaspect/edit/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": localStorage.getItem("token"),
+          },
+          body: JSON.stringify(updatedLifeAspect),
+        }
+      );
 
       if (!response.ok) throw new Error("Failed to update LifeAspect");
       const updatedClient = await response.json();
       setNotes((prevNotes) =>
         prevNotes.map((note) => (note._id === id ? updatedClient.client : note))
       );
+      await getDetails();
     } catch (error) {
       console.log("error");
     }
@@ -138,13 +154,16 @@ const ContextState = (props) => {
   // Delete Gochar entry
   const deleteLifeAspect = async (id) => {
     try {
-      const response = await fetch(`${Host}/api/admindetail/lifeaspect/delete/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          "auth-token": localStorage.getItem("token"),
-        },
-      });
+      const response = await fetch(
+        `${Host}/api/admindetail/lifeaspect/delete/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": localStorage.getItem("token"),
+          },
+        }
+      );
 
       if (!response.ok) {
         const json = await response.json();
@@ -154,6 +173,7 @@ const ContextState = (props) => {
       // const deletedClient = await response.json();
       setNotes((prevNotes) => prevNotes.filter((note) => note._id !== id));
       console.log("LifeAspect deleted successfully", "success");
+      await getDetails();
     } catch (error) {
       console.error("Error deleting LifeAspect :", error.message);
       // showAlert("Failed to delete client", "error");
@@ -183,6 +203,7 @@ const ContextState = (props) => {
           key._id === id ? { ...key, apiKey: updatedKey } : key
         )
       );
+      await getDetails();
     } catch (error) {
       console.error("Error updating API key:", error);
     }
@@ -206,6 +227,7 @@ const ContextState = (props) => {
       setNotes((prevNotes) =>
         prevNotes.map((note) => (note._id === id ? updatedClient.client : note))
       );
+      await getDetails();
     } catch (error) {
       console.log("error");
     }
@@ -231,58 +253,61 @@ const ContextState = (props) => {
       const client = await response.json();
       setNotes((prevNotes) => [...prevNotes, client]);
       console.log("Remedy added successfully", "success");
+      await getDetails();
     } catch (error) {
       console.error("Error adding Remedy:", error.message);
       // showAlert("Failed to add client", "error");
     }
   };
 
-    // Edit remedy entry
-    const editRemedy = async (id, updatedRemedy) => {
-      try {
-        const response = await fetch(`${Host}/api/remedy/edit/${id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": localStorage.getItem("token"),
-          },
-          body: JSON.stringify(updatedRemedy),
-        });
-  
-        if (!response.ok) throw new Error("Failed to update remedy");
-        const updatedClient = await response.json();
-        setNotes((prevNotes) =>
-          prevNotes.map((note) => (note._id === id ? updatedClient.client : note))
-        );
-      } catch (error) {
-        console.log("error");
+  // Edit remedy entry
+  const editRemedy = async (id, updatedRemedy) => {
+    try {
+      const response = await fetch(`${Host}/api/remedy/edit/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("token"),
+        },
+        body: JSON.stringify(updatedRemedy),
+      });
+
+      if (!response.ok) throw new Error("Failed to update remedy");
+      const updatedClient = await response.json();
+      setNotes((prevNotes) =>
+        prevNotes.map((note) => (note._id === id ? updatedClient.client : note))
+      );
+      await getDetails();
+    } catch (error) {
+      console.log("error");
+    }
+  };
+
+  // Delete remedy entry
+  const deleteRemedy = async (id) => {
+    try {
+      const response = await fetch(`${Host}/api/remedy/delete/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "auth-token": localStorage.getItem("token"),
+        },
+      });
+
+      if (!response.ok) {
+        const json = await response.json();
+        throw new Error(json.error || "Failed to delete remedy ");
       }
-    };
-  
-    // Delete remedy entry
-    const deleteRemedy = async (id) => {
-      try {
-        const response = await fetch(`${Host}/api/remedy/delete/${id}`, {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            "auth-token": localStorage.getItem("token"),
-          },
-        });
-  
-        if (!response.ok) {
-          const json = await response.json();
-          throw new Error(json.error || "Failed to delete remedy ");
-        }
-  
-        // const deletedClient = await response.json();
-        setNotes((prevNotes) => prevNotes.filter((note) => note._id !== id));
-        console.log("remedy deleted successfully", "success");
-      } catch (error) {
-        console.error("Error deleting remedy :", error.message);
-        // showAlert("Failed to delete client", "error");
-      }
-    };
+
+      // const deletedClient = await response.json();
+      setNotes((prevNotes) => prevNotes.filter((note) => note._id !== id));
+      console.log("remedy deleted successfully", "success");
+      await getDetails();
+    } catch (error) {
+      console.error("Error deleting remedy :", error.message);
+      // showAlert("Failed to delete client", "error");
+    }
+  };
 
   return (
     <NoteContext.Provider
@@ -299,7 +324,7 @@ const ContextState = (props) => {
         editPlan,
         addRemedy,
         editRemedy,
-        deleteRemedy
+        deleteRemedy,
       }}
     >
       {props.children}

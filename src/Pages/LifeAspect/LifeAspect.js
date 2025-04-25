@@ -19,7 +19,7 @@ const LifeAspect = () => {
     } else {
       getDetails();
     }
-  }, [navigate, getDetails]);
+  }, [navigate]);
 
   const openModal = (life_aspect = null) => {
     setSelectedGochar(life_aspect);

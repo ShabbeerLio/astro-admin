@@ -18,7 +18,7 @@ const ApiChange = () => {
         } else {
             getDetails();
         }
-    }, [navigate, getDetails]);
+    }, [navigate]);
     const handleEditClick = (key) => {
         setEditingId(key._id);
         setUpdatedApiKey(key.apiKey);

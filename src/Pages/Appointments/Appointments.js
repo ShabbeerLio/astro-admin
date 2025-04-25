@@ -19,7 +19,7 @@ const Appointments = () => {
         } else {
             getDetails();
         }
-    }, [navigate, getDetails]);
+    }, [navigate]);
 
     const openModal = (plan = null) => {
         setSelectedGochar(plan);

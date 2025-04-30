@@ -6,6 +6,17 @@ import { MdDelete } from "react-icons/md";
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const usersPerPage = 25;
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  };
 
   const handleKundaliClick = async (userId) => {
     const token = localStorage.getItem("token");
@@ -90,17 +101,52 @@ const Users = () => {
       setMessage(err.message || "Delete failed");
     }
   };
+  const filteredUsers = users.filter(
+    (user) =>
+      user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm]);
 
   return (
     <div className="Gochar">
       <div className="Gochar-main">
         <div className="Gochar-button">
           <h3>Users</h3>
+          <div className="planet-filter">
+            <div className="group">
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                className="search-icon"
+              >
+                <g>
+                  <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
+                </g>
+              </svg>
+              <input
+                id="query"
+                className="input"
+                type="search"
+                placeholder="Search by name or email"
+                value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+          </div>
+          
         </div>
         <div className="Gochar-box">
           {users &&
             users.length > 0 &&
-            users?.map((j) => (
+            currentUsers?.map((j) => (
               <div className="Gochar-card" key={j._id}>
                 <div className="Gochar-card-head">
                   <h5>{j.name}</h5>
@@ -133,6 +179,20 @@ const Users = () => {
                 </div>
               </div>
             ))}
+        </div>
+        <div className="pagination-controls">
+          <button onClick={handlePrevPage} disabled={currentPage === 1}>
+            Previous
+          </button>
+          <span>
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            onClick={handleNextPage}
+            disabled={currentPage === totalPages}
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>

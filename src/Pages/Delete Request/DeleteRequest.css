@@ -1,0 +1,31 @@
+.delete-request-button{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.delete-request-button p{
+   margin: 0;
+   font-size: 20px;
+   cursor: pointer;
+}
+.delete-request-button p:first-child{
+    color: red;
+}
+.delete-request-button p:last-child{
+    color: green;
+}
+
+.user-table thead tr th:last-child{
+    text-align: center;
+} 
+
+.pagination-controls{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 1rem;
+}
+.pagination-controls button{
+    padding: 10px;
+}

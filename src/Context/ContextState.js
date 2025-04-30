@@ -226,6 +226,30 @@ const ContextState = (props) => {
     }
   };
 
+  // edit appointment
+  const editAppointment = async (id, newStatus) => {
+    if (newStatus) {
+      try {
+        const response = await fetch(`${Host}/api/appointment/edit/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": localStorage.getItem("token"), // assuming token-based auth
+          },
+          body: JSON.stringify({ status: newStatus }),
+        });
+
+        if (response.ok) {
+          getDetails(); // Refresh data after successful update
+        } else {
+          console.error("Failed to update status");
+        }
+      } catch (error) {
+        console.error("Error updating status:", error);
+      }
+    }
+  };
+
   // Remedy
   // Add Remedy Entry
   const addRemedy = async (Remedy) => {
@@ -315,6 +339,7 @@ const ContextState = (props) => {
         deleteLifeAspect,
         editApiKey,
         editPlan,
+        editAppointment,
         addRemedy,
         editRemedy,
         deleteRemedy,

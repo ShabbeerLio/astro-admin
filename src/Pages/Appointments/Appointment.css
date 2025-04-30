@@ -81,4 +81,9 @@
     pointer-events: none;
     z-index: 1;
   }
+
+  .status-toggle:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}
   

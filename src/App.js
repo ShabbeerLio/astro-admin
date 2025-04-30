@@ -11,6 +11,7 @@ import LifeAspect from "./Pages/LifeAspect/LifeAspect";
 import Subscription from "./Pages/Subscription/Subscription";
 import Appointments from "./Pages/Appointments/Appointments";
 import Remedy from "./Pages/Remedy/Remedy";
+import DeleteRequest from "./Pages/Delete Request/DeleteRequest";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
               <Route path="/appointments" exact element={<Appointments />} />
               <Route path="/remedy" exact element={<Remedy />} />
               <Route path="/apiupdate" exact element={<ApiChange />} />
+              <Route path="/delete-request" exact element={<DeleteRequest />} />
             </Routes>
           </div>
         </div>

@@ -21,7 +21,7 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
-.modal-body form input {
+form input {
   padding: 10px;
   border-radius: 8px;
   border: none;

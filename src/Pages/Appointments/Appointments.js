@@ -167,6 +167,7 @@ const Appointments = () => {
                   <th>Date</th>
                   <th>Name</th>
                   <th>Email</th>
+                  <th>Phone</th>
                   <th>Plan</th>
                   <th>Amount</th>
                   <th>Transaction ID</th>
@@ -181,6 +182,7 @@ const Appointments = () => {
                     <td>{k.date}</td>
                     <td>{k.name}</td>
                     <td>{k.email}</td>
+                    <td>{k.phone}</td>
                     <td>{k.plan}</td>
                     <td>₹ {k.amount}</td>
                     <td>{k.transactionId}</td>

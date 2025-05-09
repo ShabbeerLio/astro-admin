@@ -12,6 +12,10 @@ import Subscription from "./Pages/Subscription/Subscription";
 import Appointments from "./Pages/Appointments/Appointments";
 import Remedy from "./Pages/Remedy/Remedy";
 import DeleteRequest from "./Pages/Delete Request/DeleteRequest";
+import Products from "./Pages/Products/Products";
+import AddItem from "./Pages/Products/AddItem";
+import EditProductWrapper from "./Pages/Products/EditItem";
+import Orders from "./Pages/Orders/Orders";
 
 function App() {
   return (
@@ -34,6 +38,10 @@ function App() {
               <Route path="/remedy" exact element={<Remedy />} />
               <Route path="/apiupdate" exact element={<ApiChange />} />
               <Route path="/delete-request" exact element={<DeleteRequest />} />
+              <Route path="/products" exact element={<Products />} />
+              <Route path="/products/add" exact element={<AddItem/>} />
+              <Route path="/products/edit/:id" exact element={<EditProductWrapper />} />
+              <Route path="/orders" exact element={<Orders />} />
             </Routes>
           </div>
         </div>

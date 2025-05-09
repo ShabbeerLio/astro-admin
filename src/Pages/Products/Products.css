@@ -1,0 +1,113 @@
+.image-crousel img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.product-description {
+  border: 1px solid #c9c9c9;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.product-description h5 {
+  border-bottom: 1px solid #c9c9c9;
+}
+
+.product-items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 1rem;
+}
+
+.product-form .frm-input-box {
+  margin-bottom: 1rem;
+}
+.product-form .frm-input-box.weight {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: start;
+  border: 1px solid hsl(0, 0%, 80%);
+  border-radius: 4px;
+}
+.product-form .frm-input-box.weight input {
+  width: 95%;
+  background-color: transparent;
+}
+.product-form .frm-input-box.weight select {
+  width: 5%;
+  background-color: transparent;
+}
+
+.product-variants {
+  border-radius: 8px;
+  border: 1px solid #c9c9c9;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.product-variants button {
+  padding: 10px 24px;
+}
+.product-add-btn {
+  padding: 10px;
+}
+
+.toolbar {
+  margin: 10px;
+}
+
+.product-description .btn {
+  padding: 8px 16px;
+  margin-right: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9 !important;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-description .btn:hover {
+  background-color: #f1f1f1;
+}
+
+.product-description .btn.active {
+  background-color: #f9852d !important; /* Green color when active */
+  color: white;
+  border-color: #f9852d !important;
+}
+.product-description.short,
+.product-description.long {
+  padding: 0;
+}
+.product-description.short .tiptap.ProseMirror {
+  padding: 10px;
+  border-radius: 5px;
+  height: 100px;
+  overflow-y: auto;
+}
+.product-description.long .tiptap.ProseMirror {
+  padding: 10px;
+  border-radius: 5px;
+  height: 200px;
+  overflow-y: auto;
+}
+
+.product-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.product-action p {
+  font-size: 16px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+

@@ -93,7 +93,7 @@ const AddItem = ({ closeModal, planData }) => {
         <div className="modal-container">
             <div className="modal-body">
                 <div className="modal-header">
-                    <h3>{planData ? "Edit Plan" : "Add New Plan"}</h3>
+                    <h3>{planData ? "Edit Remedy" : "Add New Remedy"}</h3>
                     <button className="close-btn" onClick={closeModal}>
                         ×
                     </button>

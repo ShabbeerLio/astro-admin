@@ -16,6 +16,9 @@ import Products from "./Pages/Products/Products";
 import AddItem from "./Pages/Products/AddItem";
 import EditProductWrapper from "./Pages/Products/EditItem";
 import Orders from "./Pages/Orders/Orders";
+import Blog from "./Pages/Blog/Blog";
+import AddBlog from "./Pages/Blog/AddItem";
+import EditItem from "./Pages/Blog/EditItem";
 
 function App() {
   return (
@@ -31,6 +34,9 @@ function App() {
               <Route path="/" exact element={<Gochar />} />
               <Route path="/gochar" exact element={<Gochar />} />
               <Route path="/lifeaspect" exact element={<LifeAspect />} />
+              <Route path="/blog" exact element={<Blog />} />
+              <Route path="/blog/add" exact element={<AddBlog />} />
+              <Route path="/blog/edit/:id" exact element={<EditItem />} />
               <Route path="/login" exact element={<Login />} />
               <Route path="/users" exact element={<Users />} />
               <Route path="/subscription" exact element={<Subscription />} />

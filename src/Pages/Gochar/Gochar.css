@@ -22,6 +22,10 @@
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   padding: 1rem;
 }
+.Gochar-card img {
+  width: 100%;
+  object-fit: cover;
+}
 
 .Gochar-card-head {
   border-bottom: 1px solid #f9852d;
@@ -73,14 +77,14 @@
   font-size: 14px;
 }
 
-.pagination{
-display: flex;
-align-items: center;
-justify-content: center;
-margin-top: 2rem;
-gap: 1rem;
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  gap: 1rem;
 }
-.pagination button{
-padding: 7px 10px;
-cursor: pointer;
+.pagination button {
+  padding: 7px 10px;
+  cursor: pointer;
 }

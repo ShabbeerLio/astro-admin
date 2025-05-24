@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from "react";
 import Host from "../../Components/Host/Host";
 import "./Users.css";
-import { MdDelete } from "react-icons/md";
+import { MdDelete, MdEdit } from "react-icons/md";
+import AddItem from "../../Components/User/AddItem";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
   const [message, setMessage] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const usersPerPage = 25;
+  const usersPerPage = 28;
   const [searchTerm, setSearchTerm] = useState("");
+  const openModal = (user = null) => {
+    setSelectedUser(user);
+    setModalOpen(true);
+  };
 
   const handlePrevPage = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
@@ -62,7 +69,7 @@ const Users = () => {
         }
 
         const json = await response.json();
-        setUsers(json);
+        setUsers(json.reverse());
       } catch (error) {
         console.error("Error fetching users:", error);
       }
@@ -119,7 +126,7 @@ const Users = () => {
     <div className="Gochar">
       <div className="Gochar-main">
         <div className="Gochar-button">
-          <h3>Users</h3>
+          <h3>Users <span style={{ fontWeight: "normal" }}>({filteredUsers.length} total)</span></h3>
           <div className="planet-filter">
             <div className="group">
               <svg
@@ -137,11 +144,10 @@ const Users = () => {
                 type="search"
                 placeholder="Search by name or email"
                 value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
           </div>
-          
         </div>
         <div className="Gochar-box">
           {users &&
@@ -150,9 +156,14 @@ const Users = () => {
               <div className="Gochar-card" key={j._id}>
                 <div className="Gochar-card-head">
                   <h5>{j.name}</h5>
-                  <p onClick={() => deleteUser(j._id)}>
-                    <MdDelete />
-                  </p>
+                  <div className="gochar-card-button">
+                    <p onClick={() => openModal(j)}>
+                      <MdEdit />
+                    </p>
+                    <p onClick={() => deleteUser(j._id)}>
+                      <MdDelete />
+                    </p>
+                  </div>
                 </div>
                 <div className="gochar-card-box">
                   <p>
@@ -195,6 +206,12 @@ const Users = () => {
           </button>
         </div>
       </div>
+      {modalOpen && (
+        <AddItem
+          closeModal={() => setModalOpen(false)}
+          gochar={selectedUser}
+        />
+      )}
     </div>
   );
 };

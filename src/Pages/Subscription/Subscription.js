@@ -3,7 +3,8 @@ import Host from "../../Components/Host/Host";
 
 const Subscription = () => {
   const [users, setUsers] = useState([]);
-  console.log(users, "users");
+  const [statusFilter, setStatusFilter] = useState(""); // "active" | "expired" | ""
+  const [typeFilter, setTypeFilter] = useState(""); // "basic" | "free" | ""
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -16,12 +17,10 @@ const Subscription = () => {
           },
         });
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch users");
-        }
+        if (!response.ok) throw new Error("Failed to fetch users");
 
         const json = await response.json();
-        setUsers(json);
+        setUsers(json.reverse());
       } catch (error) {
         console.error("Error fetching users:", error);
       }
@@ -30,16 +29,61 @@ const Subscription = () => {
     fetchUsers();
   }, []);
 
+  const filterUsers = () => {
+    return users.filter((user) => {
+      const sub = user.subscription || {};
+
+      const matchesStatus =
+        statusFilter === ""
+          ? true
+          : statusFilter === "Active"
+          ? sub.status === "Active"
+          : sub.status !== "Active";
+
+      const matchesType =
+        typeFilter === ""
+          ? true
+          : sub.plan?.toLowerCase() === typeFilter.toLowerCase();
+
+      return matchesStatus && matchesType;
+    });
+  };
+
   return (
     <div className="Gochar">
       <div className="Gochar-main">
         <div className="Gochar-button">
           <h3>Users Subscription Detail</h3>
+          <div className="planet-filter">
+            <label htmlFor="status">Status</label>
+            <select
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+            >
+              <option value="">All Status</option>
+              <option value="Active">Active</option>
+              <option value="Expired">Expired</option>
+            </select>
+          </div>
+          <div className="planet-filter">
+            <label htmlFor="type">Type</label>
+            <select
+              value={typeFilter}
+              onChange={(e) => setTypeFilter(e.target.value)}
+            >
+              <option value="">All Types</option>
+              <option value="Basic">Basic</option>
+              <option value="Free">Free</option>
+            </select>
+          </div>
         </div>
+
+        {/* Filter UI */}
+
+        {/* Filtered User Cards */}
         <div className="Gochar-box">
-          {users &&
-            users.length > 0 &&
-            users?.map((j) => (
+          {filterUsers().length > 0 ? (
+            filterUsers().map((j) => (
               <div className="Gochar-card" key={j._id}>
                 <div className="Gochar-card-head">
                   <h5>{j.name}</h5>
@@ -85,12 +129,12 @@ const Subscription = () => {
                     Discount:
                     <span>{j.subscription?.appliedCoupon?.discount}</span>
                   </p>
-                  {/* <div className="users-button">
-                    <p>Kundali</p>
-                  </div> */}
                 </div>
               </div>
-            ))}
+            ))
+          ) : (
+            <p>No users match the selected filters.</p>
+          )}
         </div>
       </div>
     </div>

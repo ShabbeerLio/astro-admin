@@ -83,7 +83,8 @@
   border-color: #f9852d !important;
 }
 .product-description.short,
-.product-description.long {
+.product-description.long ,
+.product-description.blog {
   padding: 0;
 }
 .product-description.short .tiptap.ProseMirror {
@@ -96,6 +97,12 @@
   padding: 10px;
   border-radius: 5px;
   height: 200px;
+  overflow-y: auto;
+}
+.product-description.blog .tiptap.ProseMirror {
+  padding: 10px;
+  border-radius: 5px;
+  height: 500px;
   overflow-y: auto;
 }
 

@@ -66,6 +66,28 @@ const Sidenav = () => {
                     <li>
                         <a
                             data-bs-toggle="collapse"
+                            href="#collapseExample3"
+                            role="button"
+                            aria-expanded={!isCollapsed}
+                            aria-controls="collapseExample3"
+                        >
+                            Blogs
+                            <span>{isCollapsed ? <MdExpandMore /> : <MdExpandLess />}</span>
+                        </a>
+                    </li>
+                    <div className="collapse" id="collapseExample3">
+                        <div className="card card-body">
+                            <li>
+                                <Link to={"/blog"}>Blog</Link>
+                            </li>
+                            <li>
+                                <Link to={"/blog/add"}>Add Blog</Link>
+                            </li>
+                        </div>
+                    </div>
+                    <li>
+                        <a
+                            data-bs-toggle="collapse"
                             href="#collapseExample"
                             role="button"
                             aria-expanded={!isCollapsed}

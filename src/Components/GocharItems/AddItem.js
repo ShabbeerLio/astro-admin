@@ -90,6 +90,7 @@ const AddItem = ({ closeModal, gochar }) => {
               <option value="Saturn">Saturn</option>
               <option value="Rahu">Rahu</option>
               <option value="Ketu">Ketu</option>
+              <option value="Uranus">Uranus</option>
             </select>
           </div>
           <div className="frm-input-box">

@@ -19,6 +19,7 @@ import Orders from "./Pages/Orders/Orders";
 import Blog from "./Pages/Blog/Blog";
 import AddBlog from "./Pages/Blog/AddItem";
 import EditItem from "./Pages/Blog/EditItem";
+import Coupons from "./Pages/Coupons/Coupons";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
               <Route path="/products/add" exact element={<AddItem/>} />
               <Route path="/products/edit/:id" exact element={<EditProductWrapper />} />
               <Route path="/orders" exact element={<Orders />} />
+              <Route path="/coupon" exact element={<Coupons />} />
             </Routes>
           </div>
         </div>

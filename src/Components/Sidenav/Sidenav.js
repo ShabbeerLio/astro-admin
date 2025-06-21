@@ -64,6 +64,9 @@ const Sidenav = () => {
                         <Link to={"/lifeaspect"}>Life Aspect</Link>
                     </li>
                     <li>
+                        <Link to={"/coupon"}>Coupons</Link>
+                    </li>
+                    <li>
                         <a
                             data-bs-toggle="collapse"
                             href="#collapseExample3"

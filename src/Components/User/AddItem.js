@@ -153,12 +153,36 @@ const AddItem = ({ gochar, closeModal }) => {
           const DashaData = await dashaResponse.json();
           const dashas = DashaData.response.order_of_dashas || [];
 
-          const chart1 = `${baseUrl}/horoscope/chart-image?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${params.D1}&color=%23ff3366&style=north&api_key=${params.api_key}&lang=${params.lang}`;
-          const response3 = await fetch(chart1);
-          const chart1Url = await response3.text();
-          const chart2 = `${baseUrl}/horoscope/chart-image?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${params.D9}&color=%23ff3366&style=north&api_key=${params.api_key}&lang=${params.lang}`;
-          const response4 = await fetch(chart2);
-          const chart2Url = await response4.text();
+          const divisionalCharts = [
+            "D1",
+            "D9",
+            "D3",
+            "D3-s",
+            "D7",
+            "D10",
+            "D10-R",
+            "D12",
+            "D16",
+            "D20",
+            "D24",
+            "D24-R",
+            "D30",
+            "D40",
+            "D45",
+            "D60",
+          ];
+
+          const chartUrls = {};
+
+          for (const div of divisionalCharts) {
+            const encodedDiv = encodeURIComponent(div); // for cases like D3-s, D10-R
+            const chartUrl = `${baseUrl}/horoscope/chart-image?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${encodedDiv}&color=%23ff3366&style=north&api_key=${params.api_key}&lang=${params.lang}`;
+
+            const response = await fetch(chartUrl);
+            const imageUrl = await response.text();
+
+            chartUrls[div] = imageUrl;
+          }
 
           // maha dasha
           const mahaDasha = `${baseUrl}/dashas/maha-dasha?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&api_key=${params.api_key}&lang=${params.lang}`;
@@ -212,14 +236,10 @@ const AddItem = ({ gochar, closeModal }) => {
           let rashiData = {};
 
           try {
-            const divisionalSelect =
-              document.getElementById("divisional-select");
-            const divisions = Array.from(divisionalSelect.options).map(
-              (opt) => opt.value
-            );
 
-            for (const div of divisions) {
+            for (const div of divisionalCharts) {
               const divisionalUrl = `${baseUrl}/horoscope/divisional-charts?dob=${params.dob}&tob=${params.tob}&lat=${params.lat}&lon=${params.lon}&tz=${params.tz}&div=${div}&api_key=${params.api_key}&lang=${params.lang}&response_type=planet_object`;
+              console.log(divisionalUrl,"divisionalUrl")
 
               try {
                 const response = await fetch(divisionalUrl);
@@ -270,7 +290,7 @@ const AddItem = ({ gochar, closeModal }) => {
               }
             }
           } catch (error) {
-            console.log("error");
+            console.log(error,"error");
           }
           const horoData = await fetch(
             `${Host}/api/detail/editdetail/${gochar._id}`,
@@ -320,8 +340,35 @@ const AddItem = ({ gochar, closeModal }) => {
               body: JSON.stringify({
                 step: "rashi",
                 rashiData,
-                chart1Url,
-                chart2Url,
+                chart1Url: chartUrls["D1"],
+                chart9Url: chartUrls["D9"],
+                chart3Url: chartUrls["D3"],
+                chart3sUrl: chartUrls["D3-s"],
+                chart7Url: chartUrls["D7"],
+              }),
+            }
+          );
+          const cart2Data = await fetch(
+            `${Host}/api/detail/editdetail/${gochar._id}`,
+            {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+                "auth-token": localStorage.getItem("token"),
+              },
+              body: JSON.stringify({
+                step: "chart",
+                chart10Url: chartUrls["D10"],
+                chart10rUrl: chartUrls["D10-R"],
+                chart12Url: chartUrls["D12"],
+                chart16Url: chartUrls["D16"],
+                chart20Url: chartUrls["D20"],
+                chart24Url: chartUrls["D24"],
+                chart24rUrl: chartUrls["D24-R"],
+                chart30Url: chartUrls["D30"],
+                chart40Url: chartUrls["D40"],
+                chart45Url: chartUrls["D45"],
+                chart60Url: chartUrls["D60"],
               }),
             }
           );
@@ -329,9 +376,11 @@ const AddItem = ({ gochar, closeModal }) => {
           const result = await horoData.json();
           const result2 = await dashaData.json();
           const result3 = await cartData.json();
+          const result4 = await cart2Data.json();
           console.log(result);
           console.log(result2);
           console.log(result3);
+          console.log(result4);
         } catch (error) {
           console.log(error, "error");
         }
@@ -339,6 +388,7 @@ const AddItem = ({ gochar, closeModal }) => {
         alert("Invalid Details", "danger");
       }
       alert("User updated successfully");
+      closeModal();
     } catch (error) {
       alert(error.message);
     }

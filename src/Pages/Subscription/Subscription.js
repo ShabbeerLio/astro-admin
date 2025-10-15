@@ -49,11 +49,13 @@ const Subscription = () => {
     });
   };
 
+  
+
   return (
     <div className="Gochar">
       <div className="Gochar-main">
         <div className="Gochar-button">
-          <h3>Users Subscription Detail</h3>
+          <h3>Users Subscription Detail ({filterUsers().length })</h3>
           <div className="planet-filter">
             <label htmlFor="status">Status</label>
             <select
